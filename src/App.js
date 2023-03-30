@@ -6,21 +6,30 @@ export default function App() {
     // console.log(e.target.checked);
     // console.log(id + "rrrrrrrrrr");
 
-    const updatedData = data.filter((tag, i) => {
-      if (id === tag.id) {
-        data[i].completed = !data[i].completed;
-      }
-      return tag;
-    });
+    // const updatedData = data.filter((tag, i) => {
+    //   if (id === tag.id) {
+    //     tag.completed = !tag.completed;
+    //   }
+    //   return tag;
+    // });
+    // setData(updatedData);
+    const newArr = [...data];
+    const f = newArr.filter((item) => item.id === id);
+    console.log(JSON.stringify(f) + "dshds");
+    f[0].completed = !f[0].completed;
+
+    // console.log(f);
+    // console.log(newArr);
+    setData(newArr);
     // console.log("ssjhsjdhjsdhjsd" + updatedData);
-    setData(updatedData);
   };
   useEffect(() => {
+    console.log("rohi");
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.json())
       .then((res) => {
         setData(res);
-        console.log(res);
+        //  console.log(res);
       });
   }, []);
   return (
